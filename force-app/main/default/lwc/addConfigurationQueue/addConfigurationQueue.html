@@ -1,0 +1,27 @@
+<template>
+     <lightning-card class="slds-var-p-left_xx-large">
+         <lightning-layout>
+             <lightning-layout-item size="3" class="slds-m-around_small">
+                 <lightning-combobox  name ="Queue" label="Queue"  class="frmInput" placeholder="Select queue"  value={queusName}
+                 options={QueusList} onchange={handleQueus}>
+                 </lightning-combobox>
+             </lightning-layout-item> 
+
+             <lightning-layout-item size="3" class="slds-m-around_small">
+
+                <lightning-combobox name="Configuration" label="Configuration"  class="frmInput"  value={configurationName}
+                    options={configurationList} onchange={handleconfiguration}>
+                </lightning-combobox>
+
+
+            </lightning-layout-item>
+
+        <lightning-layout-item size="3" class="slds-m-around_x-small" style="margin-top: 35px;">
+            <lightning-button variant="brand" type="submit" name="save" label="save"
+                onclick={handlesSaveRecord}>
+            </lightning-button>
+        </lightning-layout-item>
+
+         </lightning-layout>
+     </lightning-card>
+</template>

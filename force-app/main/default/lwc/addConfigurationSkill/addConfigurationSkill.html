@@ -1,0 +1,42 @@
+<template>
+    <template if:true={loaded}>
+        <lightning-spinner alternative-text="Loading"></lightning-spinner>
+    </template>
+    <lightning-layout>
+        <lightning-layout-item size="6">
+            <table class="slds-table ">
+                <thead>
+                    <tr class="slds-line-height_reset">
+                        <th class="" scope="col">
+                            <div class="slds-truncate" title="skill_fields">Skill Fields</div>
+                        </th>
+                        <th class="" scope="col">
+                            <div class="slds-truncate" title="skills">Skills</div>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <template for:each={rows} for:item="row" for:index="idx">
+                        <tr key={row.Id}>
+                            <td scope="row" class="slds-col slds-size_5-of-12">
+                                <c-select component-id={idx} options={row.skillFieldOption} multiple
+                                    onselect={handleSkillFieldSelection}></c-select>
+                            </td>
+                            <td scope="row" class="slds-col slds-size_5-of-12">
+                                <c-select component-id={idx} options={row.userSkillOption} multiple
+                                    onselect={handleSelectedUserSkill}></c-select>
+                            </td>
+                        </tr>
+                    </template>
+                    <tr>
+                        <td class="slds-p-bottom_small slds-p-left_medium" colspan="2">
+                            <lightning-radio-group name="radioGroup" label="Condition" options={conditionValue}
+                                onchange={handleRadio} type="radio" value={conditionCheckboxValue}>
+                            </lightning-radio-group>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </lightning-layout-item>
+    </lightning-layout>
+</template>

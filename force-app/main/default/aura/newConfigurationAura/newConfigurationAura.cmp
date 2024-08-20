@@ -1,0 +1,5 @@
+<aura:component implements="flexipage:availableForAllPageTypes,force:hasRecordId,lightning:actionOverride,lightning:isUrlAddressable" access="global">
+    
+    <c:addConfiguration recordId="{!v.recordId}"/>
+    
+</aura:component>

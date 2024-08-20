@@ -1,0 +1,90 @@
+<template>
+   <lightning-card>
+        <div class="slds-form-element slds-size_1-of-4 slds-m-around_medium">
+            <div class="slds-form-element__control">
+                <div class="slds-combobox_container">
+                    <div class="slds-combobox slds-open slds-dropdown-trigger slds-dropdown-trigger_click"
+                        aria-expanded="true" aria-haspopup="listbox" role="combobox" tabindex="0">
+                        <div class="slds-combobox__form-element slds-input-has-icon slds-input-has-icon_right slds-is-open" 
+                        role="none">
+                            <lightning-input class="slds-has-focus input-box" autocomplete="off" type="text" 
+                            name="input1" 
+                                placeholder='Select Service Resource' data-id="searchInput"  
+                                variant='label-hidden' onchange={showSearchResults} value={selectedMetadataLabel} 
+                                onclick={showSearchResults}
+                                onblur={handleFocusLostInputBox}>
+                            </lightning-input>
+                        </div>
+                        <template if:true={results}>
+                            <div id="listbox-id-1" data-id="listBox"
+                                class="slds-dropdown slds-dropdown_length-5 slds-dropdown_fluid" role="listbox"
+                                onmousedown={preventFocus}>
+                                <ul class="slds-listbox slds-listbox_vertical" role="presentation">
+                                    <template for:each={results} for:item="item" for:index="index">
+                                        <li role="presentation" class="slds-listbox__item" key={item.uniqueid}
+                                            data-id={item.uniqueid} data-value ={item.value}
+                                            data-label={item.label} onclick={selectItem}>
+                                            <div class="slds-media slds-listbox__option slds-listbox__option_plain slds-media_small"
+                                                role="option">
+                                                <span class="slds-media__body">
+                                                    <span class="slds-truncate" title="Accounts"> {item.label}
+                                                    </span>
+                                                </span>
+                                            </div>
+                                        </li>
+                                    </template>
+                                </ul>
+                            </div>
+                        </template>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <lightning-layout> 
+            <lightning-layout-item size ="12" >
+                <div class="slds-page-header__name-title">
+                    <h1>
+                    <span class="slds-page-header__title slds-truncate slds-m-around_medium " > Selected Service Resource Skill</span>
+                    </h1>
+                </div>
+                <table class="slds-table slds-table_cell-buffer">
+                    <thead>
+                        <tr>
+                            <th>Service Resource Name</th>
+                            <th>Skill Name</th>                       
+                            <th>Skill Level</th>
+                            <th>Start Date/Time</th>
+                            <th>End Date/Time</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead> 
+                    <tbody>    
+                    <template for:each={serviceResourceSkills} for:item ="data" for:index="index">
+                            <tr key={data}>
+                                <td> {data.ServiceResourceName}</td>
+                                <td> {data.MasterLabel } </td>
+                                <td> {data.SkillLevel}</td>     
+                                <td> {data.EffectiveStartDate} </td>                      
+                                <td> {data.EffectiveEndDate}</td>
+                                <td>
+                                    <div class="slds-m-top_medium">
+                                        <lightning-icon  access-key={index} id={index}  onclick = {handleServiceResourceSkillDelete} data-value={data.Id} value ={data.ServiceResourceName} icon-name="utility:delete"></lightning-icon>
+                                    </div>
+                                </td> 
+                            </tr>
+                        </template>
+                    </tbody>
+                </table>
+            </lightning-layout-item>
+        </lightning-layout>
+        <lightning-layout>
+            <lightning-layout-item class = "slds-align_absolute-center">
+                <lightning-button brand ="brand" label ="Save"  onclick= {handleSave}  ></lightning-button>
+                    <div class = "slds-p-left_small">
+                        <lightning-button brand ="brand" label ="Cancel"  onclick= {handleCancel}  ></lightning-button>
+                    </div>
+            </lightning-layout-item>
+        </lightning-layout>
+   </lightning-card> 
+</template>

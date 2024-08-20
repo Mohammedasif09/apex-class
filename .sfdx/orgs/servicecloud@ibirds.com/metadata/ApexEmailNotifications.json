@@ -1,0 +1,18 @@
+{
+  "status": 0,
+  "result": [
+    {
+      "createdById": "0055g00000BZXVRAA5",
+      "createdByName": "Skill Resource",
+      "createdDate": "1970-01-01T00:00:00.000Z",
+      "fileName": "apexEmailNotifications/apexEmailNotifications.notifications",
+      "fullName": "apexEmailNotifications",
+      "id": "",
+      "lastModifiedById": "0055g00000BZXVRAA5",
+      "lastModifiedByName": "Skill Resource",
+      "lastModifiedDate": "1970-01-01T00:00:00.000Z",
+      "namespacePrefix": "",
+      "type": "ApexEmailNotifications"
+    }
+  ]
+}

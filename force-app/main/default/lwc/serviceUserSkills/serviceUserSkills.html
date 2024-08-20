@@ -1,0 +1,99 @@
+<template>
+    <lightning-card class="slds-var-p-left_xx-large" title="Service User Skill">
+        <template if:true={loaded}>
+            <lightning-spinner alternative-text="Loading">
+            </lightning-spinner>
+        </template>
+        <template if:true={userRecordId}>
+            <lightning-layout>
+                <lightning-layout-item size="3" class="slds-p-around_medium">
+                    <lightning-combobox label="Service User" value={serviceUser} options={serviceUserList}
+                        onchange={handleServiceUsers} required>
+                    </lightning-combobox>
+                </lightning-layout-item>
+            </lightning-layout>
+            <template for:each={serviceUserNewSkill} for:item="serviceItem" for:index="idx">
+                <lightning-layout key={serviceItem.uniqueId} style="align-items: end;">
+                    <lightning-layout-item size="3" class="slds-p-around_medium">
+                        <c-select onselect={handleSkills} data-id={idx} label="* Skills"
+                            options={filterServiceUserSkillList}>
+                        </c-select>
+                        <!-- <lightning-combobox data-id={idx} label="Skills" options={filterServiceUserSkillList}
+                        onchange={handleSkills} required>
+                    </lightning-combobox> -->
+                    </lightning-layout-item>
+                    <lightning-layout-item size="3" class="slds-p-around_small">
+                        <lightning-input type="datetime" data-id={idx} label="Start Date"
+                            onchange={handleStartDate} date-style="small" required>
+                        </lightning-input>
+                    </lightning-layout-item>
+                    <lightning-layout-item size="3" class="slds-p-around_small">
+                        <lightning-input type="datetime" data-id={idx} label="End Date"
+                            onchange={handleEndtDate}>
+                        </lightning-input>
+                    </lightning-layout-item>
+                    <lightning-layout-item size="2" class="slds-p-around_medium">
+                        <lightning-input type="number" data-id={idx} label="Skill Level"
+                            onchange={handleSkillLevel} placeholder="Enter skill in number">
+
+                        </lightning-input>
+                    </lightning-layout-item>
+                    <template if:true={clearButtonVisable}>
+                        <lightning-layout-item size="1" class="slds-p-around_medium">
+                            <lightning-icon icon-name='utility:close' alternative-text='clear' size='small'
+                                title='clear' data-id={idx} onclick={handleRemoveRow}>
+                            </lightning-icon>
+                        </lightning-layout-item>
+                    </template>
+                </lightning-layout>
+            </template>
+        </template>
+        <template if:false={userRecordId}>
+            <lightning-layout style="align-items: end;">
+                <lightning-layout-item size="3" class="slds-p-around_medium">
+                    <c-select onselect={handleServiceUsers} label="* Service User" options={serviceUserList}>
+                    </c-select>
+                </lightning-layout-item>
+                <lightning-layout-item size="3" class="slds-p-around_medium">
+                    <c-select onselect={handleSkills} label="* Skills" options={serviceUserSkillList}>
+                    </c-select>
+                </lightning-layout-item>
+                <lightning-layout-item size="3" class="slds-p-around_small">
+                    <lightning-input type="datetime" class="frmInput" label="Start Date" date-style="small" required>
+
+                    </lightning-input>
+                </lightning-layout-item>
+                <lightning-layout-item size="3" class="slds-p-around_small">
+                    <lightning-input type="datetime" class="frmInput" label="End Date">
+                    </lightning-input>
+                </lightning-layout-item>
+            </lightning-layout>
+            <lightning-layout style="align-items: end;">
+                <lightning-layout-item size="3" class="slds-p-around_small">
+                    <lightning-input type="number" class="frmInput" label="Skill Level"
+                        placeholder="Enter skill in number">
+                    </lightning-input>
+                </lightning-layout-item>
+            </lightning-layout>
+        </template>
+        <lightning-layout>
+            <lightning-layout-item size="7" class="slds-p-around_x-small">
+                <lightning-button variant="brand" type="submit" name="save" label="Save"
+                    onclick={handlesSaveServiceUserSkills} style="float:right;"></lightning-button>
+                <template if:true={userRecordId}>
+                    <lightning-button type="submit" name="Add New Row" label="Add Row" onclick={handleAddNewRow}
+                        style="float:right; margin-left: 5px; margin-right: 5px;" disabled={addRowDisable}>
+                    </lightning-button>
+                </template>
+                <template if:false={userRecordId}>
+                    <lightning-button type="submit" name="Save & New" label="Save & New" onclick={handleSaveAndNew}
+                        style="float:right; margin-left: 5px; margin-right: 5px;">
+                    </lightning-button>
+                </template>
+                <lightning-button type="submit" name="cancel" label="Cancel" onclick={handlesCancelServiceUserSkills}
+                    style="float:right;">
+                </lightning-button>
+            </lightning-layout-item>
+        </lightning-layout>
+    </lightning-card>
+</template>

@@ -1,0 +1,35 @@
+<template>
+    <lightning-card title="Configuration Records" icon-name="custom:custom14">
+        <table class="slds-table slds-table_cell-buffer">
+            <thead>
+                <tr>
+                    <th>Configuration Name </th>
+                    <th>Status</th>
+                    <th>Object</th>
+                </tr>
+            </thead>
+            <tbody>
+                <template for:each={ConfigurationList} for:item="data" for:index="index">
+                    <tr key={data.Id}>
+                        <td><lightning-input access-key={index} name="Name" value={data.Name}></lightning-input></td>
+                        <td><lightning-input access-key={index} name="Status" value={data.Status__c}></lightning-input></td>
+                        <td><lightning-input access-key={index} name="Object" value={data.Object__c}></lightning-input></td>
+                    </tr>
+                   
+            </template>
+
+            </tbody>
+        </table>
+        <lightning-layout>
+            <lightning-layout-item class = "slds-align_absolute-center">
+                <lightning-button brand ="brand" label ="Save"  onclick= {handleSave}  ></lightning-button>
+                    <div class = "slds-p-left_small">
+                        <lightning-button brand ="brand" label ="Add" onclick= {addRow}  ></lightning-button>&nbsp;
+                    </div>
+            </lightning-layout-item>
+        </lightning-layout>
+   
+
+</lightning-card>
+
+</template>

@@ -1,0 +1,28 @@
+<template>
+    <lightning-card title="Radio Example" icon-name="custom:custom34">
+        <lightning-layout>
+            <lightning-layout-item size ="5" >
+                <div class = 'slds-m-around_medium'> 
+                    <lightning-combobox 
+                        options={useroptions} 
+                        value={value}
+                        placeholder ='Select User'  
+                        onchange={handleUser}>
+                    </lightning-combobox>
+                </div> 
+            </lightning-layout-item>
+        </lightning-layout>
+        <div class="slds-m-around_medium">
+            <lightning-radio-group
+                label="Select Status"
+                options={status}
+                value={selectedStatus}
+                onchange={handleStatus}
+            >
+            </lightning-radio-group>
+            <div>Selected Status : {selectedStatus}</div>
+        </div>
+        
+    </lightning-card>
+    
+</template>

@@ -1,0 +1,44 @@
+{
+  "status": 0,
+  "result": [
+    {
+      "createdById": "0055g00000BZXVRAA5",
+      "createdByName": "Skill Resource",
+      "createdDate": "2022-01-05T06:32:52.000Z",
+      "fileName": "aura/serviceUsekSkillsAura",
+      "fullName": "serviceUsekSkillsAura",
+      "id": "0Ab5g000004LrsiCAC",
+      "lastModifiedById": "0055g00000BZXVRAA5",
+      "lastModifiedByName": "Skill Resource",
+      "lastModifiedDate": "2022-01-31T11:59:54.000Z",
+      "manageableState": "unmanaged",
+      "type": "AuraDefinitionBundle"
+    },
+    {
+      "createdById": "0055g00000BZXVRAA5",
+      "createdByName": "Skill Resource",
+      "createdDate": "2021-12-17T07:18:56.000Z",
+      "fileName": "aura/newConfigurationAura",
+      "fullName": "newConfigurationAura",
+      "id": "0Ab5g000004Lp9lCAC",
+      "lastModifiedById": "0055g00000BZXVRAA5",
+      "lastModifiedByName": "Skill Resource",
+      "lastModifiedDate": "2022-01-11T11:13:25.000Z",
+      "manageableState": "unmanaged",
+      "type": "AuraDefinitionBundle"
+    },
+    {
+      "createdById": "0055g00000BZXVRAA5",
+      "createdByName": "Skill Resource",
+      "createdDate": "2021-12-17T07:20:40.000Z",
+      "fileName": "aura/newConfigurationAuraApp",
+      "fullName": "newConfigurationAuraApp",
+      "id": "0Ab5g000004Lp9vCAC",
+      "lastModifiedById": "0055g00000BZXVRAA5",
+      "lastModifiedByName": "Skill Resource",
+      "lastModifiedDate": "2021-12-31T02:14:51.000Z",
+      "manageableState": "unmanaged",
+      "type": "AuraDefinitionBundle"
+    }
+  ]
+}

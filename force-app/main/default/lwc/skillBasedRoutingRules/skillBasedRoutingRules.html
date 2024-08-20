@@ -1,0 +1,72 @@
+<template>
+    <div class="exampleHolder">
+        <template if:true={isshowSpinner}>
+            <lightning-spinner alternative-text="Loading"></lightning-spinner>
+        </template>
+    </div>
+    <lightning-card >
+        <div class="slds-grid slds-gutters">
+            <div class ="slds-col slds-size_1-of-4 slds-m-around_medium">
+                <lightning-combobox 
+                    name="Objects"
+                    label="Objects"
+                    placeholder="Select objects"
+                    options={objectLists}
+                    onchange={handleObject} >
+                </lightning-combobox>
+            </div>        
+           
+            <div class ="slds-col slds-size_1-of-4 slds-m-around_medium">
+                <lightning-combobox 
+                    name="Objects"
+                    label="Fields"
+                    placeholder="Select Fields"
+                    options={fields}
+                    onchange={handleField} >
+                </lightning-combobox>
+            </div>
+        </div>
+        <div>
+            
+        </div>
+        <lightning-card >
+        <template if:true={showFilter}>
+            <div class ="slds-m-around_small">
+                <table  class="slds-table slds-table_bordered" cellpadding = "2px">
+                    <thead>
+                        <tr class="slds-line-height_reset slds-grid slds-gutters" style="width:100%">
+                            <th class="changeBackground slds-col slds-size_1-of-12" scope="col">
+                                
+                            </th>
+                            <th class="changeBackground slds-col slds-size_3-of-12" scope="col">
+                                Field </th>
+                            <th class="changeBackground slds-col slds-size_3-of-12" scope="col">
+                                Operator
+                            </th>
+                            <th class="changeBackground slds-col slds-size_3-of-12" scope="col">
+                                Value
+                            </th>
+                            <th class="changeBackground slds-col slds-size_1-of-12" scope="col">
+                                
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <template if:true = {showRows}>
+                            <template if:true = {rows} for:each={rows} for:item="row">
+                                <c-filter-criteria key = {row.Id} display-index = {row.displayIndex}
+                                onremoverow = {handleRemoveRow} field-list = {objectFields}
+                                ></c-filter-criteria>
+                            </template>
+                        </template>
+                    </tbody>
+                </table>
+            </div>
+           
+                <lightning-button slot= "actions" label="Add" class="slds-align_absolute-center" onclick={addRow}></lightning-button>
+        
+        </template>
+
+    </lightning-card>
+    </lightning-card>
+</template>

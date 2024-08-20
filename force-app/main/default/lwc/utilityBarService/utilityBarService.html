@@ -1,0 +1,47 @@
+<template>
+<lightning-card  >
+  <lightning-layout >
+      <lightning-layout-item padding="around-small" size="6"> 
+          <div class="page-section page-header">
+            <strong>{status}</strong>
+          </div>
+      </lightning-layout-item>
+      <lightning-layout-item padding="around-small" size="6">
+        <div  style="float:right">
+          <div class="slds-dropdown-trigger slds-dropdown-trigger_click slds-is-open">
+            <lightning-button-icon icon-name="utility:down" variant="border-filled" size="small" alternative-text="More Actions" onclick={handleshow}></lightning-button-icon>
+              <template if:true={showMenu}>  
+                <lightning-radio-group
+                      options={options}
+                      value={radiostatus}
+                      onchange={handleclick}>
+                  </lightning-radio-group>
+              </template>
+            </div> 
+        </div>
+          
+      </lightning-layout-item>
+  </lightning-layout> 
+
+  
+  <hr style="margin: 0"/>
+    <lightning-tabset>
+      <lightning-tab label=" New (0)">
+      </lightning-tab>
+      <lightning-tab label="My Work (0)">
+        <div style="height: 300px;" if:true={data}>
+          <lightning-datatable
+                  key-field="Id"
+                  data={data}
+                  columns={columns}
+                  onrowaction={handleRowAction}
+                  >
+          </lightning-datatable>
+        </div>
+      </lightning-tab>          
+</lightning-tabset>  
+
+
+
+</lightning-card>   
+</template>

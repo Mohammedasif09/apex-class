@@ -1,0 +1,132 @@
+<template>
+    <lightning-card class="slds-var-p-left_xx-large" title="New Configuration">
+        <template if:true={loaded}>
+            <lightning-spinner alternative-text="Loading"></lightning-spinner>
+        </template>
+        <lightning-layout>
+            <lightning-layout-item size="3" class="slds-p-around_small">
+                <lightning-input type="text" class="frmInput" label="Configuration Name" value={conName}
+                    placeholder="Enter Configuration Name" required>
+                </lightning-input>
+            </lightning-layout-item>
+            <lightning-layout-item size="3" class="slds-p-around_small">
+                <div class="slds-col">
+                    <lightning-combobox name="Objects" label="Objects" class="frmInput" placeholder="Select object"
+                        value={Object} options={objectLists} onchange={handleObject} required>
+                    </lightning-combobox>
+                </div>
+            </lightning-layout-item>
+            <lightning-layout-item size="3" class="slds-p-around_small">
+                <lightning-combobox name="Field" label="Status Close Field" class="frmInput" value={selectedObjField}
+                    options={fields} onchange={handleField}>
+                </lightning-combobox>
+            </lightning-layout-item>
+            <lightning-layout-item size="3" class="slds-p-around_small">
+                <template if:true={stringType}>
+                    <lightning-input type="text-area" class="frmInput" label="Status Close Value"
+                        value={selectedObjFieldValue} placeholder="Input String">
+                    </lightning-input>
+                </template>
+                <template if:true={picklistType}>
+                    <c-select onselect={handleSelectedPicklist} label="Status Close Value" class="frmInput"
+                    selected-obj-field-value={selectedObjFieldValue} options={fieldPicklistValue} multiple></c-select>
+                </template>
+            </lightning-layout-item>
+        </lightning-layout>
+        <lightning-layout>
+            <lightning-layout-item size="3" class="slds-p-around_small">
+                <lightning-combobox name="status" label="Status" class="frmInput" value={fieldSelect}
+                    placeholder="Select Status" options={options} onchange={handleChange}>
+                </lightning-combobox>
+            </lightning-layout-item>
+            <lightning-layout-item size="3" class="slds-p-around_small">
+                <lightning-input type="text" class="frmInput" value={model} label="Model" placeholder="Enter a model">
+                </lightning-input>
+            </lightning-layout-item>
+            <lightning-layout-item size="3" class="slds-p-around_small">
+                <lightning-input type="number" class="frmInput" value={agentCapacity} label="Agent Capacity"
+                    placeholder="Enter a number" maxlength="2">
+                </lightning-input>
+            </lightning-layout-item>
+                <lightning-layout-item size="3" class="slds-p-around_small">
+                    <template if:true={showEditForm}>
+                    <c-select onselect={handleSelectedPicklistSkill} label="* Queue" selected-value-queue={selectedQueuesList}
+                        options={queuseList} has-items={closeDopdown} multiple></c-select>
+                    </template>
+                    <template if:false={showEditForm}>
+                        <c-select onselect={handleSelectedPicklistSkill} label="* Queue" selected-value-queue={selectedQueuesList}
+                            options={queuseList} has-items={closeDopdown} multiple></c-select>
+                        </template>
+                </lightning-layout-item>            
+        </lightning-layout>
+        <lightning-layout>
+            <lightning-layout-item size="12" class="slds-p-around_xx-small">
+                <lightning-input type="checkbox" disabled={isSkillBasedRouting} data-id="checkboxId"
+                    class="slds-p-left_small" value={skillCheckbox}
+                    label="Skill Based Routing ( Object Selection Required )" onchange={handleCheck}>
+                </lightning-input>
+            </lightning-layout-item>
+        </lightning-layout>
+        <lightning-layout>
+            <lightning-layout-item size="12">
+                <template if:false={fieldComponentOff}>
+                    <div class="slds-m-around_x-small">
+                            <lightning-layout>
+                                <lightning-layout-item size="6">
+                                    <table class="slds-table ">
+                                        <thead>
+                                            <tr class="slds-line-height_reset">
+                                                <th class="" scope="col">
+                                                    <div class="slds-truncate" title="skill_fields">Skill Fields</div>
+                                                </th>
+                                                <th class="" scope="col">
+                                                    <div class="slds-truncate" title="skills">Skills</div>
+                                                </th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                    <template if:true={showEditForm}>
+                                                        <td scope="row" class="slds-col slds-size_5-of-12">
+                                                            <c-select options={fields} has-items={closeDopdown} multiple
+                                                                onselect={handleSkillFieldSelection} selected-value-skills-fields={selectedSkillFieldList} onchildevent={handleUpload}></c-select>
+                                                        </td>                                                        
+                                                    </template>
+                                                    <template if:false={showEditForm}>
+                                                        <td scope="row" class="slds-col slds-size_5-of-12">
+                                                            <c-select options={fields} multiple
+                                                            has-items={closeDopdown} onselect={handleSkillFieldSelection} ></c-select>
+                                                        </td>
+                                                    </template>
+                                                        <td scope="row" class="slds-col slds-size_5-of-12">
+                                                            <c-select options={userSkillList} multiple
+                                                                onselect={handleSelectedUserSkill} selected-value-skills={selectedSkillsList}></c-select>
+                                                        </td>                                                  
+                                                </tr>
+                                            <tr>
+                                                <td class="slds-p-bottom_small slds-p-left_medium" colspan="2">
+                                                    <lightning-radio-group name="radioGroup" data-id="opeatorId" label="Condition" options={conditionValue}
+                                                        onchange={handleRadio} type="radio" value={conditionCheckboxValue}>
+                                                    </lightning-radio-group>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </lightning-layout-item>
+                            </lightning-layout>
+                        </div>
+                </template>
+            </lightning-layout-item>
+        </lightning-layout>
+        <lightning-layout>
+            <lightning-layout-item size="6" class="slds-p-around_x-small">
+                <lightning-button variant="brand" type="submit" name="save" label={buttonLebel} onclick={handlesSaveRecord}
+                    style="float:right;"></lightning-button>
+                <template if:true={cancelHide}>
+                    <lightning-button type="submit" name="cancel" label="Cancel" onclick={handlesCancel}
+                        style="float:right; padding-right: 4px;"></lightning-button>
+                </template>
+            </lightning-layout-item>
+        </lightning-layout>
+    </lightning-card>
+</template>

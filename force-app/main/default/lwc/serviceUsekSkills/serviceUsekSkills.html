@@ -1,0 +1,33 @@
+<template>
+    <lightning-card class="slds-var-p-left_xx-large" title="Service User Skill">
+        <template if:true={loaded}>
+            <lightning-spinner alternative-text="Loading"></lightning-spinner>
+        </template>        
+        <lightning-layout>
+            <lightning-layout-item size="4" class="slds-p-around_small">
+                <c-select onselect={handleServiceUsers} label="Service User" options={serviceUsers}></c-select>
+            </lightning-layout-item>
+            <lightning-layout-item size="4" class="slds-p-around_small">
+                <c-select onselect={handleSkills} label="Skills" options={serviceSkills} multiple></c-select>
+            </lightning-layout-item>
+            <lightning-layout-item size="4" class="slds-p-around_small">
+                <lightning-input type="number" class="frmInput" label="Skill Level">
+                </lightning-input>
+            </lightning-layout-item>            
+            </lightning-layout>
+        <lightning-layout>
+            <lightning-layout-item size="4" class="slds-p-around_small">
+                <lightning-input type="datetime" name="input2" label="Start Date" value="2020-09-12T18:13:41Z"></lightning-input>
+            </lightning-layout-item>           
+            <lightning-layout-item size="4" class="slds-p-around_small">
+                <lightning-input type="datetime" name="input2" label="End Date" value="2020-09-12T18:13:41Z"></lightning-input>
+            </lightning-layout-item>
+        </lightning-layout>
+        <lightning-layout>
+            <lightning-layout-item size="6" class="slds-p-around_x-small">
+                <lightning-button variant="brand" type="submit" name="save" label="Save" onclick={handlesSaveServiceUserSkills}
+                    style="float:right;"></lightning-button>
+            </lightning-layout-item>
+        </lightning-layout>
+        </lightning-card>
+</template>

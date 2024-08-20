@@ -1,0 +1,15 @@
+<apex:page controller="GetAllObjectsListController">
+ <apex:form >
+   <apex:pageBlock id="AllObjectsList">
+    <apex:outputlabel value="Object Name"/>      
+        <apex:selectList value="{!SelectedObject}" id="ObjPickList" size="1">
+       <apex:selectOptions value="{!AllObjList}"/>
+    </apex:selectList>
+ </apex:pageBlock>
+     <apex:pageBlock id="AllFields">
+    <apex:outputlabel value="Object Feild"/>      
+ 
+  
+ </apex:pageBlock>
+ </apex:form>
+</apex:page>

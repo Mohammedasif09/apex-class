@@ -1,0 +1,112 @@
+<template>
+    <lightning-card title="Configuration Records" icon-name="custom:custom14">
+     <!-- <template for:each={mapData} for:item="mapKey">
+         <tr key={mapKey.key}>
+             <th scope="col">
+                 <div title={mapKey.key}>{mapKey.key}</div>
+             </th>
+             <th scope="col">
+                 <div title={mapKey.value}>{mapKey.value}</div>
+             </th>
+         </tr>
+         
+     </template>-->
+     
+     <table class="slds-table slds-table_cell-buffer">
+        <thead>
+            <tr>
+                <th>Configuration Name </th>
+                <th>Status</th>
+                <th>Object</th>
+                <th>AgentCapacity</th>
+            </tr>
+        </thead>
+        <tbody>
+            <template for:each={configurationList} for:item="data" for:index="index">
+                <tr key={data}>
+                    <td><lightning-input data-access-key={index} data-value ="123" name="configName" value={data.Name} onchange={changHandler}></lightning-input></td>
+                    <td>
+                        <template if:true={ResourceTypeValues.data}>
+
+                        <lightning-combobox
+                         data-access-key={index}
+                          name="Status"
+                           value={data.Status__c}
+                            onchange={changHandler}
+                            options={ResourceTypeValues.data.values}
+                             ></lightning-combobox>
+                            </template>
+                            </td>
+                    <td><lightning-input data-access-key={index} name="Object" value={data.Object__c} onchange={changHandler}></lightning-input></td>
+                    <td><lightning-input data-access-key={index} name="AgentCapacity" value={data.Agent_Capacity__c} onchange={changHandler}></lightning-input></td>
+                </tr>
+               
+        </template>
+
+        </tbody>
+    </table>
+    <lightning-layout>
+        <lightning-layout-item class = "slds-align_absolute-center">
+            <lightning-button brand ="brand" label ="Save"  onclick= {handleSave}  ></lightning-button>
+                
+        </lightning-layout-item>
+       
+    </lightning-layout>
+   
+       
+     <div class="slds-grid slds-gutters slds-m-around_medium">
+        <div>
+            <lightning-input type="text" class ="frmInput"
+            label="Configuration Name">
+             </lightning-input>
+            
+        </div>
+        <div class="slds-col">
+            <lightning-combobox
+            name="status"
+            label="Objects"
+            placeholder="Select Object"
+            onchange={handleChange}
+            options={mapData}>
+        </lightning-combobox>
+    
+        </div>
+        <div class="slds-col">
+            <lightning-combobox
+            name="field"
+            label="Fields"
+            placeholder="Object Feild"
+            onchange={handleChangeField}
+            options={fieldData}>
+        </lightning-combobox>
+        </div>
+        
+        <div class="slds-p-horizontal_small">
+            <c-Pick-list-item 
+                if:true={fieldValue} 
+                options={fieldValue}
+                onvaluechange={handleValueChange} 
+                label=" Selected PiclistValues">
+            </c-Pick-list-item>
+
+        
+        </div>
+        <div>
+            <lightning-input type="Number" class = "frmInput"
+            label="Agent Capacity">
+             </lightning-input>
+            
+        </div>
+       
+        
+        </div>
+        
+   <lightning-layout>
+        <lightning-layout-item  class="slds-align_absolute-center">
+                <lightning-button  variant="brand" type="submit" name="save" label="save" onclick={handlesSaveRecord}></lightning-button>
+        </lightning-layout-item>
+   </lightning-layout>
+        
+    
+ </lightning-card>
+</template>

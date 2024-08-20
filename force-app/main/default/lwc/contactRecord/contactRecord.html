@@ -1,0 +1,44 @@
+<template>
+    <lightning-layout multiple-rows>
+        <lightning-avatar initials={display} fallback-icon-name="utility:datadotcom" class="avtar-design">
+        </lightning-avatar>
+        <lightning-layout-item size="12" small-device-size="6" medium-device-size="4" large-device-size="2" padding="around-small">
+            
+            <div class="slds-form-element">
+                
+                
+                <div class="slds-form-element__control">
+                    
+                  <input type="text" placeholder="First Name..." name = "firstName" onchange = {handleChange} value={firstName} class="slds-input" />
+                </div>
+              </div>
+        </lightning-layout-item>
+        <lightning-layout-item size="12" small-device-size="6" medium-device-size="4" large-device-size="2" padding="around-small">
+            <div class="slds-form-element">
+                
+                <div class="slds-form-element__control">
+                  <input type="text" placeholder="Last Name..." name = "lastName" value={lastName} onchange = {handleChange} class="slds-input" />
+                </div>
+              </div>
+        </lightning-layout-item>
+        <lightning-layout-item size="12" small-device-size="6" medium-device-size="4" large-device-size="2" padding="around-small">
+            <div class="slds-form-element">
+                
+                <div class="slds-form-element__control">
+                  <input type="email"  placeholder="Email..." name = "email" value={email} onchange = {handleChange} class="slds-input" />
+                </div>
+              </div>
+        </lightning-layout-item>
+        <lightning-layout-item size="12" small-device-size="6" medium-device-size="4" large-device-size="2" padding="around-small">
+            <div class="slds-form-element">
+                
+                <div class="slds-form-element__control">
+                  <input type="phone" placeholder="Phone..." name = "phone" value={phone} onchange = {handleChange} class="slds-input" />
+                </div>
+              </div>
+        </lightning-layout-item>
+        <lightning-layout-item size="12" small-device-size="6" medium-device-size="4" large-device-size="2" padding="around-small">
+            <lightning-button-icon icon-name="utility:delete"  data-display = {display} data-id={contactId} onclick={deleteContact} alternative-text="Delete"   class="slds-m-left_xx-small" title="Delete"></lightning-button-icon>
+        </lightning-layout-item>
+    </lightning-layout>
+</template>

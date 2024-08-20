@@ -1,0 +1,52 @@
+<template>
+    <lightning-card title="Configuration Records" icon-name="custom:custom14">
+    
+         <div class="tableDiv">
+            <div class={tableStyle}>
+                <table aria-describedby="conatact-list" class="slds-table  slds-table_bordered ">
+                    <thead>
+                        <tr class="slds-line-height_reset">
+                            <th class="slds-size_1-of-6 " scope="col">
+                                <div class="slds-truncate " title="Configration Name">Configuration Name</div>
+                            </th>
+                            <th class="slds-size_1-of-6 " scope="col">
+                                <div class="slds-truncate " title="Status">Status</div>
+                            </th>
+                            <th class="slds-size_1-of-6 " scope="col">
+                                <div class="slds-truncate " title="Object">Object</div>
+                            </th>
+                            
+                            </tr>
+                            </thead>
+            </table>
+            <tbody>
+                <template for:each={fetche} for:item="item" for:index="indexVar">
+                    <tr key={item.Id} class="slds-hint-parent">
+                        <td class="slds-size_1-of-6">
+                            <div>
+                                {item.Configuration}
+                            </div>
+                        </td>
+                        <td class="slds-size_1-of-6">
+                            <div>
+                                {item.Status}
+                            </div>
+                        </td>
+                        <td class="slds-size_1-of-6">
+                            <div>
+                                {item.Oject}
+                            </div>
+                        </td>
+                        </tr>
+                        </template>
+                        
+
+    </div>
+
+    </div>
+   
+
+
+</lightning-card>
+    
+</template>

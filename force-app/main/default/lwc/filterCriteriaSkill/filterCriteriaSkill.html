@@ -1,0 +1,63 @@
+<template>
+    <tr class="slds-hint-parent slds-grid slds-p-left_xxx-small">
+        <td scope="row" class="slds-col slds-p-top_large slds-p-left_small slds-size_0.5-of-12">
+           
+                <lightning-badge label={displayIndex} variant="label-inline" ></lightning-badge> 
+        </td>
+        <td scope="row" class="slds-col slds-size_5-of-12 slds-p-top_large slds-p-horizontal_small">
+
+            <div class="slds-form-element">
+                <div class="slds-form-element__control setWidth">
+                    <div class="slds-combobox_container">
+                        <div class="slds-combobox slds-open slds-dropdown-trigger  slds-dropdown-trigger_click"
+                            aria-expanded="true" aria-haspopup="listbox" role="combobox" tabindex="0">
+                            <div class="slds-combobox__form-element slds-input-has-icon slds-input-has-icon_right slds-is-open"
+                                role="none">
+                                <lightning-input label="Skill Fields"  class="slds-has-focus input-box setWidth" autocomplete="off"
+                                    type="text" name="input1" value={selectedLabel} placeholder='Select skill fields'
+                                    data-id="searchInput" variant='label-hidden' onchange={showSearchResults}
+                                    onfocus={showSearchResults} onclick={showSearchResults}
+                                    onblur={handleFocusLostInputBox} disabled={onSelectDisable}>
+                                </lightning-input>
+                            </div>
+                            <template if:true={results}>
+                                <div id="listbox-id-4" data-id="listBox"
+                                    class="slds-dropdown slds-dropdown_length-5 slds-dropdown_fluid" role="listbox"
+                                    onmousedown={preventFocus}>
+                                    <ul class="slds-listbox slds-listbox_vertical" role="presentation">
+                                        <template for:each={results} for:item="item" for:index="index">
+                                            <li role="presentation" class="slds-listbox__item" key={item.uniqueid}
+                                                data-datatype={item.type} data-label={item.label}
+                                                data-value={item.value} onclick={selectedItem}>
+                                                <div class="slds-media slds-listbox__option slds-listbox__option_plain slds-media_small"
+                                                    role="option">
+                                                    <span class="slds-media__body">
+                                                        <span class="slds-truncate" title="Label"> {item.label}
+                                                        </span>
+                                                    </span>
+                                                </div>
+                                            </li>
+                                        </template>
+                                    </ul>
+                                </div>
+                            </template>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </td>
+        <td scope="row" class="slds-col slds-size_5-of-12 slds-p-top_xx-small slds-p-horizontal_small">
+            <!-- <lightning-combobox  name ="Skills" placeholder="Select Skills" 
+            options={userSkillList} multiselectable="true" ></lightning-combobox> -->
+            <c-Pick-list-item options={userSkillList} 
+            onvaluechange ={handleSelectedUserSkill} isdisabled="true">
+            </c-Pick-list-item>
+        </td>
+        <td scope="row" class="slds-col slds-size_0.5-of-12 slds-p-left_medium slds-p-top_large">
+
+            <lightning-icon icon-name='utility:close' alternative-text='clear' size='small' title='clear' 
+            data-id={displayIndex} data-label={selectedField} data-value={selectedValue} onclick={removeRows} >
+            </lightning-icon>
+        </td>
+    </tr>
+</template>
